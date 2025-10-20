@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST recognition in Canvas with TensorFlow.js</title>
+  <!--
+    MNIST recognition in Canvas with TFJS
+    by H.Nishiyama, Niigata Univ. 
+    2025/10/20 ver7.0
+    Based on
+        https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
+    Ref:
+        https://js.tensorflow.org/api/latest
+        https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99
+        https://qiita.com/niusounds/items/37c1f9b021b62194e077
+    supported by
+        GitHub copilot on VSCode
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+  <!-- Import the data file -->
+  <script src="data.js" type="module"></script>
+
+  <!-- Import the main script file -->
+  <script src="script.js" type="module"></script>
+
+</head>
+<body style="margin:20px;">
+  <h4 class="title is-1">MNIST recognition in Canvas with TensorFlow.js</h4>
+  <h5 class="subtitle is-3">手書き数字の認識 by H.Nishiyama, Niigata Univ.</h5>
+  <details>
+    <summary>
+      【利用方法の詳細】（この部分クリックすると詳細が展開されます）<br>
+      <p>現状PCでのみ動作確認済み。iPhone等では上手く動きません。（2025/10/20現在）</p>
+    </summary>
+    <div style="margin-top:8px;">
+      <p>●エポック数（epochs）を1〜100の範囲で設定できます。</p>
+      <p>エポック数を設定後、【学習実行】ボタンをクリックして下さい。</p>
+      <p>右側に学習の進捗状況が表示されます。</p>
+      <p>学習終了後、手書き文字入力エリアに任意の文字を描いてください。</p>
+      <p>【予測】ボタンをクリックすると、認識結果が表示されます。</p>
+      <p>【クリア】ボタンをクリックすると描画エリアがクリアされます。</p>
+      <p>●学習後のモデルを保存する場合・・・</p>
+      <p> ⇒ 【Save Model】ボタンをクリックしてください。</p>
+      <p>●保存されたモデルを読み込む場合・・・</p>
+      <p> ⇒ json形式のモデルファイルとbin形式のパラメータファイルを選択し、</p>
+      <p>   【Load Model】ボタンをクリックしてください。</p>
+    </div>
+  </details>
+  <div>
+    エポック数：<input type="number" id="epoch" value="10" min="1" max="100" step="1"><br>
+    <button id="train" class="button is-primary is-large" onclick="run()">学習実行</button>
+  </div>
+  <div id="draw-area"></div>
+  <div>
+    <h5 id="saveTitle" style="visibility:hidden">学習後のモデル保存</h5>
+    <button id="saveModel" class="button is-link is-light" 
+    onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
+    <h5>学習後のモデルとパラメータ読み込み</h5>
+    <p>json形式で記述された学習後モデルの選択</p>
+    <input type="file" id="json-upload" name="json-upload" multiple/><br>
+    <p>bin形式で記述された学習後パラメータの選択</p>
+    <input type="file" id="weights-upload" name="weights-upload" multiple/><br>
+    <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
+  </div>
+  <div>
+    【参考資料】<br>
+    骨格としたソフト<br> 
+    　　https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html<br>
+    参考資料<br>
+    　　https://js.tensorflow.org/api/latest<br>
+    　　https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99<br>
+    　　https://qiita.com/niusounds/items/37c1f9b021b62194e077<br>
+    上記参考資料を基にVSCode上にてGitHub copilotと連携しながら実装を行った<br>
+  </div>
+</body>
+</html>
