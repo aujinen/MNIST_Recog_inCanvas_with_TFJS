@@ -1,4 +1,10 @@
 # MNIST_Recog_inCanvas_with_TFJS
+## サーバへファイルをアップロードする場合
+index.html<br>
+data.js<br>
+script.js<br>
+の3つのファイルをアップロードする
+## バージョン情報 
   by H.Nishiyama, Niigata Univ. <br>
      2025/10/20 ver7.0<br>
   Based on<br>
@@ -9,7 +15,7 @@
       https://qiita.com/niusounds/items/37c1f9b021b62194e077<br>
   supported by<br>
       GitHub copilot on VSCode<br>
-＝＝＝<br>
+## 実行手順
 ※現状PCでのみ動作確認済み。iPhone等では上手く動きません。（2025/10/20現在）<br>
 <br>
 ●エポック数（epochs）を1〜100の範囲で設定できます。<br>
@@ -25,9 +31,10 @@
 ●保存されたモデルを読み込む場合・・・<br>
 ⇒ json形式のモデルファイルとbin形式のパラメータファイルを選択し、<br>
 【Load Model】ボタンをクリックしてください。<br>
-＝＝＝<br>
+## 学習済みサンプルパラメータの利用
 ※サブフォルダ内にフォルダ名のエポック数にて学習させたサンプルのパラメータを置いています。
 ※【Load Model】にて学習済みのサンプルを体験できます。
+## 実行時の様子
 <img width="853" height="547" alt="image" src="https://github.com/user-attachments/assets/e88f4a1c-b00e-4307-9650-5bb9da0338cf" /><br>
 ＝＝＝<br>
 <img width="917" height="941" alt="image" src="https://github.com/user-attachments/assets/ed9307e1-aca2-43b8-910d-5c471d6ef57d" /><br>
