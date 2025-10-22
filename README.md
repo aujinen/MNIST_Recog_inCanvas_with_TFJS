@@ -5,9 +5,9 @@ data.js<br>
 script.js<br>
 の3つのファイルをアップロードする
 ## バージョン情報 
-    by H.Nishiyama / aujinen<br>
-    2025/09/24 ver1.0<br>
-    2025/10/22 ver7.1<br>
+    by H.Nishiyama / aujinen
+    2025/09/24 ver1.0
+    2025/10/22 ver7.1
   Based on<br>
       https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html<br>
   Ref:<br>
