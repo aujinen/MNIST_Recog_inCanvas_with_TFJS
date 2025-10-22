@@ -1,12 +1,12 @@
 /**
  * @license
- * Copyright 2025 [H.Nishiyama, Niigata-University]
+ * Copyright 2025 H.Nishiyama / aujinen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,7 +16,7 @@
  */
 
 //MNIST recognition in Canvas with TFJS
-//  by H.Nishiyama, Niigata Univ. 
+//  by H.Nishiyama / aujinen
 //     2025/10/20 ver7.0
 //  Based on
 //      https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
@@ -354,3 +354,4 @@ window.onload = () => {
   setupUI();
   // run()は手動実行
 };
+
