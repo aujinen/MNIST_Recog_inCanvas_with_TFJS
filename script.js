@@ -17,7 +17,8 @@
 
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
-//     2025/10/20 ver7.0
+//     2025/09/24 ver1.0
+//     2025/10/22 ver7.1
 //  Based on
 //      https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
 //  Ref:
@@ -354,4 +355,5 @@ window.onload = () => {
   setupUI();
   // run()は手動実行
 };
+
 
