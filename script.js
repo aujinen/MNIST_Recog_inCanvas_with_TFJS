@@ -18,7 +18,7 @@
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2025/10/22 ver7.1
+//     2026-04-28 ver7.2
 //  Based on
 //      https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
 //  Ref:
@@ -289,7 +289,8 @@ function setupDrawArea() {
 // ==============================
 export async function saveModelBtn() {
   if (ExistModel) {
-    await model.save('downloads://my-mnist-model');
+    const saveFileName = 'downloads://my-mnist-model_' + epochs_val;
+    await model.save(saveFileName);
   }
 }
 
@@ -355,5 +356,3 @@ window.onload = () => {
   setupUI();
   // run()は手動実行
 };
-
-
