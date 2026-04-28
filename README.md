@@ -7,7 +7,7 @@ script.js<br>
 ## バージョン情報 
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2025/10/22 ver7.1
+    2026-04-28 ver7.2
   Based on<br>
       https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html<br>
   Ref:<br>
@@ -29,6 +29,8 @@ script.js<br>
 【クリア】ボタンをクリックすると描画エリアがクリアされます。<br>
 ●学習後のモデルを保存する場合・・・<br>
  ⇒ 【Save Model】ボタンをクリックしてください。<br>
+    2つのファイルをダウンロードする必要があるので、<br>
+    ブラウザにてアラートが出た場合は許可して下さい。<br>
 ●保存されたモデルを読み込む場合・・・<br>
  ⇒ json形式のモデルファイルとbin形式のパラメータファイルを選択し、<br>
   【Load Model】ボタンをクリックしてください。<br>
