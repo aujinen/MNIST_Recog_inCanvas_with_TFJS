@@ -18,7 +18,7 @@
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2026-04-28 ver7.2
+//     2026-04-28 ver7.3
 //  Based on
 //      https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
 //  Ref:
@@ -295,11 +295,22 @@ export async function saveModelBtn() {
 }
 
 export async function loadModelBtn() {
-  const jsonUpload = document.getElementById('json-upload');
-  const weightsUpload = document.getElementById('weights-upload');
-  model = await tf.loadLayersModel(tf.io.browserFiles([jsonUpload.files[0], weightsUpload.files[0]]));
-  alert('Model loaded from files.');
-  ExistModel = true;
+    const jsonUpload = document.getElementById('json-upload');
+    const weightsUpload = document.getElementById('weights-upload');
+    try {
+      model = await tf.loadLayersModel(tf.io.browserFiles([jsonUpload.files[0], weightsUpload.files[0]]));
+      alert('Model loaded from files.');
+    }
+    catch (error) {
+      model = null;
+      alert('*** Cannot loading from files:' + error);
+    }
+  if (model == null) {
+    ExistModel = false;
+  }
+  else {
+    ExistModel = true;
+  }
   document.getElementById('saveModel').style.visibility = 'visible';
   document.getElementById('saveTitle').style.visibility = 'visible';
   const optimizer = tf.train.adam();
