@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST recognition in Canvas with TensorFlow.js</title>
+  <!--
+    MNIST recognition in Canvas with TFJS
+    by H.Nishiyama / aujinen
+    2025/09/24 ver1.0
+    2026-07-19 ver7.4
+    Based on
+        https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
+    Ref:
+        https://js.tensorflow.org/api/latest
+        https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99
+        https://qiita.com/niusounds/items/37c1f9b021b62194e077
+    supported by
+        GitHub copilot on VSCode
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+  <!-- Import the data file -->
+  <script src="data.js" type="module"></script>
+
+  <!-- Import the main script file -->
+  <script src="script.js?v=7.4" type="module"></script>
+
+</head>
+<body style="margin:20px;">
+  <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
+  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.7.4</h5>
+  <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
+  <br><br>
+  <details>
+    <summary style="background-color: blanchedalmond; cursor:pointer;">
+      【利用方法の詳細】（この部分クリックすると詳細が展開されます）<br>
+      【注】歯学部指定のノートPC以上のスペックでの動作のみ保証します<br>
+            JavaScript VM動作用に520MB(10 epoch)〜3.1GB(100 epoch)程度のメモリが必要です<br>
+            iPhone等の携帯端末では動きません。（2025/10/22現在）<br>
+    </summary>
+    <div style="background-color:blanchedalmond ; margin-top:8px;">
+      右サイドに表示される動作状況表示ウィンドウは[@]キーで開閉できます。<br>
+      [スペース]キーで最大画面表示・最小画面表示を切替できます。<br>
+      === 実行手順 ===<br>
+      ●エポック数（epochs）を1〜100の範囲で設定できます。<br>
+      エポック数を設定後、【学習実行】ボタンをクリックして下さい。<br>
+      右側に学習の進捗状況が表示されます。<br>
+      学習終了後、手書き文字入力エリアに任意の文字を描いてください。<br>
+      【予測】ボタンをクリックすると、認識結果が表示されます。<br>
+      【クリア】ボタンをクリックすると描画エリアがクリアされます。<br>
+      ●学習後のモデルを保存する場合・・・<br>
+      　⇒ 【Save Model】ボタンをクリックしてください。<br>
+      　　2つのファイルをダウンロードする必要があるので、<br>
+      　　ブラウザにてアラートが出た場合は許可して下さい。<br>
+      　　ファイル名は「my-mnist-model_###.json」と「my-mnist-model_###.weights.bin」です。<br>
+      　　###にはエポック数が入ります。<br>
+      　　※モデルファイルは共通（全く同じ）ですが、仕様上エポック数の入った別名で保存されます。<br>
+      ●保存されたモデルを読み込む場合・・・<br>
+      　⇒ json形式のモデルファイルとbin形式のパラメータファイルを選択し、<br>
+      　　【Load Model】ボタンをクリックしてください。<br>
+      　　サンプルとして、`1`から`100`までのフォルダ内に該当するエポック数にて学習済みのモデルとパラメータを読み込むこともできます。<br>
+      　　※モデルファイルは共通（全く同じ）です。<br>
+      === <br>
+    </div>
+  </details>
+  <div>
+    エポック数：<input type="number" id="epoch" value="10" min="1" max="100" step="1"><br>
+    <button id="train" class="button is-primary is-large" onclick="run()">学習実行</button>
+  </div>
+  <div id="draw-area"></div>
+  <div>
+    <h5 id="saveTitle" style="visibility:hidden">学習後のモデル保存</h5>
+    ==> <button id="saveModel" class="button is-link is-light" 
+    onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
+    <h5>学習後のモデルとパラメータ読み込み</h5>
+    <p>json形式で記述された学習後モデルの選択</p>
+    <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
+    <p>bin形式で記述された学習後パラメータの選択</p>
+    <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
+    <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
+  </div>
+  <div>
+    【参考資料】<br>
+    骨格としたソフト<br> 
+    　　https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html<br>
+    参考資料<br>
+    　　https://js.tensorflow.org/api/latest<br>
+    　　https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99<br>
+    　　https://qiita.com/niusounds/items/37c1f9b021b62194e077<br>
+    上記参考資料を基にVSCode上にてGitHub copilotと連携しながら実装を行った<br>
+  </div>
+</body>
+
+</html>

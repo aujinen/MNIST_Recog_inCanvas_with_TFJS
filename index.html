@@ -75,15 +75,14 @@
   </div>
   <div id="draw-area"></div>
   <div>
-    <h5 id="saveTitle" style="visibility:hidden">学習後のモデル保存</h5>
-    <button id="saveModel" class="button is-link is-light" 
-    onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
-    <h5>学習後のモデルとパラメータ読み込み</h5>
-    <p>json形式で記述された学習後モデルの選択</p>
-    <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
-    <p>bin形式で記述された学習後パラメータの選択</p>
-    <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
-    <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
+    <h5 id="saveTitle" style="visibility:hidden">●学習後のモデル保存</h5>
+    　<button id="saveModel" class="button is-link is-light" onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
+    <h5>●学習済みモデルとパラメータ読み込み</h5>
+    <p>1) json形式で記述された学習後モデルの選択</p>
+    ＝＝＞ <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
+    <p>2) bin形式で記述された学習後パラメータの選択</p>
+    ＝＝＞ <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
+    3) <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
   </div>
   <div>
     【参考資料】<br>
