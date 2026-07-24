@@ -9,7 +9,7 @@
     MNIST recognition in Canvas with TFJS
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-07-19 ver7.4
+    2026-07-24 ver7.5
     Based on
         https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
     Ref:
@@ -29,12 +29,12 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main script file -->
-  <script src="script.js?v=7.4" type="module"></script>
+  <script src="script.js?v=7.5" type="module"></script>
 
 </head>
 <body style="margin:20px;">
   <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
-  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.7.4</h5>
+  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.7.5</h5>
   <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
   <br><br>
   <details>
@@ -66,6 +66,7 @@
       　　【Load Model】ボタンをクリックしてください。<br>
       　　サンプルとして、`1`から`100`までのフォルダ内に該当するエポック数にて学習済みのモデルとパラメータを読み込むこともできます。<br>
       　　※モデルファイルはパラメータファイル名の指定部分を除いて全く同じです。<br>
+      　　概略図(PDF) ：<a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf" target="model-archtecture">モデルの構造</a><br>
       === <br>
     </div>
   </details>
@@ -87,11 +88,11 @@
   <div>
     【参考資料】<br>
     骨格としたソフト<br> 
-    　　https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html<br>
+    　　<a href="https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html" target="_blank">TensorFlow.js - CNN による手書き数字の認識</a><br>
     参考資料<br>
-    　　https://js.tensorflow.org/api/latest<br>
-    　　https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99<br>
-    　　https://qiita.com/niusounds/items/37c1f9b021b62194e077<br>
+    　　<a href="https://js.tensorflow.org/api/latest" target="_blank">TensorFlow.js API Documentation</a><br>
+    　　<a href="https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99" target="_blank">TensorFlow.jsでMNIST学習済モデルを読み込みブラウザで手書き文字認識をする</a><br>
+    　　<a href="https://qiita.com/niusounds/items/37c1f9b021b62194e077" target="_blank">async await の使い方</a><br>
     上記参考資料を基にVSCode上にてGitHub copilotと連携しながら実装を行った<br>
   </div>
 </body>
