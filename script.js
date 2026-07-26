@@ -18,7 +18,7 @@
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2026-07-24 ver7.5
+//     2026-07-26 ver8.0
 //  Model architecture
 //     https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
 //  Based on
@@ -51,6 +51,7 @@ function setupUI() {
   // 保存・読込ボタンの初期状態
   document.getElementById('saveModel').style.visibility = 'hidden';
   document.getElementById('saveTitle').style.visibility = 'hidden';
+  document.getElementById('showDetails').style.visibility = 'hidden';
 }
 
 // ==============================
@@ -315,6 +316,7 @@ export async function loadModelBtn() {
   }
   document.getElementById('saveModel').style.visibility = 'visible';
   document.getElementById('saveTitle').style.visibility = 'visible';
+  document.getElementById('showDetails').style.visibility = 'visible';
   const optimizer = tf.train.adam();
   model.compile({
     optimizer: optimizer,
@@ -349,6 +351,7 @@ async function mainFlow() {
   ExistModel = true;
   document.getElementById('saveModel').style.visibility = 'visible';
   document.getElementById('saveTitle').style.visibility = 'visible';
+  document.getElementById('showDetails').style.visibility = 'visible';
 
   setupDrawArea();
 }
@@ -359,11 +362,99 @@ async function run() {
 }
 
 // ==============================
+// 9. 畳み込みフィルタの可視化　（ver.8.0で追加）
+// ==============================
+function createConvFilterCanvas(kernel2d, scale = 24) {
+  const height = kernel2d.length;
+  const width = kernel2d[0].length;
+  const flat = kernel2d.flat();
+  const min = Math.min(...flat);
+  const max = Math.max(...flat);
+  const range = max - min || 1;
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  canvas.style.width = `${width * scale}px`;
+  canvas.style.height = `${height * scale}px`;
+  canvas.style.imageRendering = 'pixelated';
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(width, height);
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const value = Math.round(255 * (kernel2d[y][x] - min) / range);
+      const idx = (y * width + x) * 4;
+      imageData.data[idx] = value;
+      imageData.data[idx + 1] = value;
+      imageData.data[idx + 2] = value;
+      imageData.data[idx + 3] = 255;
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+  return canvas;
+}
+
+function showConvFilters(layer, maxFilters = 8) {
+  const weightsTensor = layer.getWeights()[0];
+  const [kh, kw, inChannels, outChannels] = weightsTensor.shape;
+  const filters = weightsTensor.transpose([3, 0, 1, 2]).arraySync();
+  const showCount = Math.min(outChannels, maxFilters);
+  const surface = tfvis.visor().surface({ name: `Conv Filters (${layer.name})\n[Black:0-White:255 after normalization], first ${maxFilters} filters / ${outChannels} total`, tab: 'Model' });
+  tfvis.visor().open();
+  tfvis.visor().setActiveTab('Model');
+  surface.drawArea.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'grid';
+  wrapper.style.gridTemplateColumns = `repeat(${showCount}, auto)`;
+  wrapper.style.gap = '12px';
+  surface.drawArea.appendChild(wrapper);
+
+  for (let i = 0; i < showCount; i++) {
+    const kernelSlice = filters[i];
+    const channelAverage = [];
+    for (let y = 0; y < kh; y++) {
+      channelAverage[y] = [];
+      for (let x = 0; x < kw; x++) {
+        let sum = 0;
+        for (let c = 0; c < inChannels; c++) {
+          sum += kernelSlice[y][x][c];
+        }
+        channelAverage[y][x] = sum / inChannels;
+      }
+    }
+    const card = document.createElement('div');
+    card.style.textAlign = 'center';
+    const label = document.createElement('div');
+    label.textContent = `Filter ${i + 1}`;
+    label.style.marginBottom = '6px';
+    card.appendChild(createConvFilterCanvas(channelAverage));
+    card.appendChild(label);
+    wrapper.appendChild(card);
+  }
+}
+
+function showDetailBtn() {
+  const maxShowLayers = 5; // 最大表示層数
+  if (!model) {
+    alert('モデルがまだ読み込まれていません。');
+    return;
+  }
+  const convLayers = model.layers.filter(layer => layer.getClassName().toLowerCase().includes('conv2d'));
+  if (convLayers.length === 0) {
+    alert('モデルに畳み込み層が見つかりません。');
+    return;
+  }
+  for (let i = 0; (i < convLayers.length && i < maxShowLayers); i++) {
+    showConvFilters(convLayers[i], 8);
+  }
+}
+
+// ==============================
 // 9. グローバル公開・初期化
 // ==============================
 window.run = run;
 window.saveModelBtn = saveModelBtn;
 window.loadModelBtn = loadModelBtn;
+window.showDetailBtn = showDetailBtn;
 
 window.onload = () => {
   setupUI();

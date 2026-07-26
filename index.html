@@ -9,7 +9,7 @@
     MNIST recognition in Canvas with TFJS
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-07-24 ver7.5
+    2026-07-26 ver8.0
     Model architecture
         https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
     Based on
@@ -31,12 +31,12 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main script file -->
-  <script src="script.js?v=7.5" type="module"></script>
+  <script src="script.js?v=8.0" type="module"></script>
 
 </head>
 <body style="margin:20px;">
   <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
-  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.7.5</h5>
+  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.8.0</h5>
   <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
   <br><br>
   <details>
@@ -75,6 +75,7 @@
   <div>
     エポック数：<input type="number" id="epoch" value="10" min="1" max="100" step="1"><br>
     <button id="train" class="button is-primary is-large" onclick="run()">学習実行</button>
+    <button id="showDetails" class="button is-info is-light" onclick="showDetailBtn()" style="visibility:hidden; margin-left:8px;">畳み込みフィルタの詳細表示</button>
   </div>
   <div id="draw-area"></div>
   <div>
