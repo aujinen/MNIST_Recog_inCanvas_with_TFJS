@@ -1,4 +1,6 @@
 # MNIST_Recog_inCanvas_with_TFJS
+## 最新体験版のURL(変更する可能性あり)
+[新潟大・西山・TFJS_HN](https://www5.dent.niigata-u.ac.jp/~nisiyama/TFJS_HN/)
 ## サーバへファイルをアップロードする場合
 index.html<br>
 data.js<br>
@@ -49,10 +51,13 @@ iPhone等の携帯端末では動きません。（2025/10/22現在）<br>
 ※サブフォルダ`1`から`100`内に各エポック数にて学習させたサンプルのパラメータ(.bin)と共通のモデル(.json)を置いています。
 ※【Load Model】にて学習済みのサンプルを体験できます。
 ## 実行時の様子
-<img width="853" height="547" alt="image" src="https://github.com/user-attachments/assets/e88f4a1c-b00e-4307-9650-5bb9da0338cf" /><br>
+<img width="711" height="729" alt="image01" src="https://github.com/user-attachments/assets/d0fb65dc-17c2-45e3-a71e-2a5af0bd100b" /><br>
 ＝＝＝<br>
-<img width="917" height="941" alt="image" src="https://github.com/user-attachments/assets/ed9307e1-aca2-43b8-910d-5c471d6ef57d" /><br>
+<img width="893" height="832" alt="image02" src="https://github.com/user-attachments/assets/79be0c0f-a245-484b-85a8-c00f3b0610f2" /><br>
 ＝＝＝<br>
-<img width="939" height="818" alt="image" src="https://github.com/user-attachments/assets/348f37f1-0793-4112-a572-87df420026fb" /><br>
+<img width="922" height="746" alt="image03" src="https://github.com/user-attachments/assets/47dcb0ae-4630-44c2-962f-a9a70822abdf" /><br>
 ＝＝＝<br>
-<img width="934" height="496" alt="image" src="https://github.com/user-attachments/assets/88cad7c2-e56d-4d35-af5c-f34873908083" /><br>
+<img width="859" height="510" alt="image04" src="https://github.com/user-attachments/assets/e9653221-e110-4a2e-b097-ba9954502793" /><br>
+＝＝＝<br>
+<img width="910" height="827" alt="image05" src="https://github.com/user-attachments/assets/91d05fdb-1890-4ca0-bad2-610299f9ee68" /><br>
+
