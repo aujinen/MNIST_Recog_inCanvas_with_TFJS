@@ -18,7 +18,7 @@
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2026-07-24 ver7.5
+//     2026-07-26 ver8.0
 //  Model architecture
 //     https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
 //  Based on
@@ -356,6 +356,14 @@ async function mainFlow() {
   setupDrawArea();
 }
 
+async function run() {
+  ExistModel = false;
+  await mainFlow();
+}
+
+// ==============================
+// 9. 畳み込みフィルタの可視化　（ver.8.0で追加）
+// ==============================
 function createConvFilterCanvas(kernel2d, scale = 24) {
   const height = kernel2d.length;
   const width = kernel2d[0].length;
@@ -390,7 +398,7 @@ function showConvFilters(layer, maxFilters = 8) {
   const [kh, kw, inChannels, outChannels] = weightsTensor.shape;
   const filters = weightsTensor.transpose([3, 0, 1, 2]).arraySync();
   const showCount = Math.min(outChannels, maxFilters);
-  const surface = tfvis.visor().surface({ name: `Conv Filters (${layer.name})`, tab: 'Model' });
+  const surface = tfvis.visor().surface({ name: `Conv Filters (${layer.name})\n[Black:0-White:255 after normalization], first ${maxFilters} filters / ${outChannels} total`, tab: 'Model' });
   tfvis.visor().open();
   tfvis.visor().setActiveTab('Model');
   surface.drawArea.innerHTML = '';
@@ -425,6 +433,7 @@ function showConvFilters(layer, maxFilters = 8) {
 }
 
 function showDetailBtn() {
+  const maxShowLayers = 5; // 最大表示層数
   if (!model) {
     alert('モデルがまだ読み込まれていません。');
     return;
@@ -434,15 +443,9 @@ function showDetailBtn() {
     alert('モデルに畳み込み層が見つかりません。');
     return;
   }
-  showConvFilters(convLayers[0], 8);
-  if (convLayers.length > 1) {
-    showConvFilters(convLayers[1], 8);
+  for (let i = 0; (i < convLayers.length && i < maxShowLayers); i++) {
+    showConvFilters(convLayers[i], 8);
   }
-}
-
-async function run() {
-  ExistModel = false;
-  await mainFlow();
 }
 
 // ==============================

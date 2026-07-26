@@ -65,7 +65,7 @@ export class MnistData {
               img, 0, i * chunkSize, img.width, chunkSize, 0, 0, img.width,
               chunkSize);
 
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height, {willReadFrequently: true });
 
           for (let j = 0; j < imageData.data.length / 4; j++) {
             // All channels hold an equal value since the image is grayscale, so
