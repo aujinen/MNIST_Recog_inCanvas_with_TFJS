@@ -398,7 +398,7 @@ function showConvFilters(layer, maxFilters = 8) {
   const [kh, kw, inChannels, outChannels] = weightsTensor.shape;
   const filters = weightsTensor.transpose([3, 0, 1, 2]).arraySync();
   const showCount = Math.min(outChannels, maxFilters);
-  const surface = tfvis.visor().surface({ name: `Conv Filters (${layer.name})\n[Black:0-White:255 after normalization], first ${maxFilters} filters / ${outChannels} total`, tab: 'Model' });
+  const surface = tfvis.visor().surface({ name: `Conv Filters (${layer.name})[Black:0-White:255 after normalization], first ${maxFilters} filters / ${outChannels} total`, tab: 'Model' });
   tfvis.visor().open();
   tfvis.visor().setActiveTab('Model');
   surface.drawArea.innerHTML = '';
