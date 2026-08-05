@@ -1,6 +1,6 @@
 # MNIST_Recog_inCanvas_with_TFJS
 ## Latest demo URL (subject to change)
-[Niigata Univ./ HNishiyama/ TFJS_HN](https://www5.dent.niigata-u.ac.jp/~nisiyama/TFJS_HN/)
+[Niigata Univ./ HNishiyama/ TFJS_HN](https://www5.dent.niigata-u.ac.jp/~nisiyama/TFJS_HN/en)
 ## When uploading files to the server
 Upload the following three files:<br>
 index.html<br>
