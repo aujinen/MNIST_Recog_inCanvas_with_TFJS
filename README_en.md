@@ -40,6 +40,7 @@ Click the [Clear] button to clear the drawing area.<br>
 　　Two files need to be downloaded, so if a browser alert appears, please allow it.<br>
 　　The file names are “my-mnist-model_###.json” and “my-mnist-model_###.weights.bin”.<br>
 　　Contains the number of epochs as ###.<br>
+　　The model files are common, but due to the specifications, they are saved with different names that include the number of epochs.<br>
 ●To load a saved model…<br>
 　⇒ Select the model file in JSON format and the parameter file in BIN format, then click the [Load Model] button.<br>
 　　As a sample, you can also load a model and parameters trained with the corresponding epoch number from the folders 1 through 100.<br>

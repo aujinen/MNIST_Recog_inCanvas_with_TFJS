@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST recognition in Canvas with TensorFlow.js</title>
+  <!--
+    MNIST recognition in Canvas with TFJS
+    by H.Nishiyama / aujinen
+    2025/09/24 ver1.0
+    2026-07-26 ver8.0
+    Model architecture
+        https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
+    Based on
+        https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html
+    Ref:
+        https://js.tensorflow.org/api/latest
+        https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99
+        https://qiita.com/niusounds/items/37c1f9b021b62194e077
+    supported by
+        GitHub copilot on VSCode
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <!-- Import tfjs-vis -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+  <!-- Import the data file -->
+  <script src="data.js" type="module"></script>
+
+  <!-- Import the main script file -->
+  <script src="script.js?v=8.0" type="module"></script>
+
+</head>
+<body style="margin:20px;">
+  <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
+  <h5 class="subtitle is-4">Handwritten digit recognition by H.Nishiyama / aujinen, V.8.0</h5>
+  <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
+  <br><br>
+  <details>
+    <summary style="background-color: blanchedalmond; cursor:pointer;">
+      [Detailed Usage Instructions] (Click this section to expand details)<br>
+      [Note] Operation is only guaranteed on laptops with specifications equal to or higher than those specified by the Faculty of Dentistry.<br>
+            Approximately 520MB (10 epochs) to 3.1GB (100 epochs) of memory is required for JavaScript VM operation.<br>
+            It will not work on mobile devices such as iPhones. (As of 2025/10/22)<br>
+    </summary>
+    <div style="background-color:blanchedalmond ; margin-top:8px;">
+      The status display window on the right side can be opened and closed with the [@] key.<br>
+      You can switch between maximum and minimum screen display with the [Space] key.<br>
+      === Execution Procedure ===<br>
+      ● You can set the number of epochs in the range of 1 to 100.<br>
+      After setting the number of epochs, click the [Run Training] button.<br>
+      The training progress will be displayed on the right side.<br>
+      After training is complete, draw any character in the handwriting input area.<br>
+      Clicking the [Predict] button will display the recognition result.<br>
+      Clicking the [Clear] button will clear the drawing area.<br>
+      ● To save the trained model...<br>
+      　⇒ Click the [Save Model] button.<br>
+      　　You will need to download two files, so<br>
+      　　please allow such alerts that appear in your browser.<br>
+      　　The file names are "my-mnist-model_###.json" and "my-mnist-model_###.weights.bin".<br>
+      　　It will contain the number of epochs as ###.<br>
+      　　*The model files are common, but due to the specifications,<br>
+      　　 they are saved with different names that include the number of epochs.<br>
+      ●To load a saved model...<br>
+      　⇒ Select the model file in JSON format and the parameter file in BIN format,<br>
+      　　then click the [Load Model] button.<br>
+      　　As an example, you can also load models and parameters<br>
+      　　that have been trained for the corresponding epoch number in folders from '1' to '100'.<br>
+      　　*The model files are exactly the same except for the part where the parameter file name is specified.<br>
+      　　Outline diagram (PNG)<a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture_en.png" target="model-archtecture">Model Architecture</a><br>
+      === <br>
+    </div>
+  </details>
+  <div>
+    Epoch: <input type="number" id="epoch" value="10" min="1" max="100" step="1"><br>
+    <button id="train" class="button is-primary is-large" onclick="run()">Run Training</button>
+    <button id="showDetails" class="button is-info is-light" onclick="showDetailBtn()" style="visibility:hidden; margin-left:8px;">Show Convolutional Filter Details (Under Model View)</button>
+  </div>
+  <div id="draw-area"></div>
+  <div>
+    <h5 id="saveTitle" style="visibility:hidden">●Save Model</h5>
+    　<button id="saveModel" class="button is-link is-light" onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
+    <h5>●Load Trained Model and Parameters</h5>
+    <p>1) Select the trained model file in JSON format</p>
+    ＝＝＞ <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
+    <p>2) Select the trained parameters file in BIN format</p>
+    ＝＝＞ <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
+    3) <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
+  </div>
+  <div>
+    [Reference Materials(Japanese)]<br>
+    The core software<br> 
+    　　<a href="https://codelabs.developers.google.com/codelabs/tfjs-training-classfication/index.html" target="_blank">TensorFlow.js - Recognition of handwritten digits using CNN / TensorFlow.js - CNN による手書き数字の認識</a><br>
+    Reference Materials<br>
+    　　<a href="https://js.tensorflow.org/api/latest" target="_blank">TensorFlow.js API Documentation</a><br>
+    　　<a href="https://qiita.com/yukagil/items/ca84c4bfcb47ac53af99" target="_blank">Loading a pre-trained MNIST model with TensorFlow.js Recognition / TensorFlow.jsでMNIST学習済モデルを読み込みブラウザで手書き文字認識をする</a><br>
+    　　<a href="https://qiita.com/niusounds/items/37c1f9b021b62194e077" target="_blank">How to use async await / async await の使い方</a><br>
+    Based on the above reference materials, the implementation was done in VS Code in conjunction with GitHub Copilot.<br>
+  </div>
+</body>
+
+</html>
