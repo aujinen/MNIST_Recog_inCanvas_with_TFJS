@@ -18,7 +18,7 @@
 //MNIST recognition in Canvas with TFJS / English version
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2026-07-26 ver8.0
+//     2026-08-05 ver8.1
 //  Model architecture
 //     https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
 //  Based on
@@ -460,3 +460,26 @@ window.onload = () => {
   setupUI();
   // run()は手動実行
 };
+
+// ==============================
+// 10. ファイル選択UIの更新
+// ==============================
+const jsonUpload = document.getElementById('json-upload');
+const jsonNames = document.getElementById('json-upload-filenames');
+
+if (jsonUpload) {
+  jsonUpload.addEventListener('change', () => {
+    const files = Array.from(jsonUpload.files).map(f => f.name).join(', ');
+    jsonNames.textContent = files || 'No files selected';
+  });
+}
+
+const weightsUpload = document.getElementById('weights-upload');
+const weightsNames = document.getElementById('weights-upload-filenames');
+
+if (weightsUpload) {
+  weightsUpload.addEventListener('change', () => {
+    const files = Array.from(weightsUpload.files).map(f => f.name).join(', ');
+    weightsNames.textContent = files || 'No files selected';
+  });
+}

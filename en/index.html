@@ -9,7 +9,7 @@
     MNIST recognition in Canvas with TFJS
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-07-26 ver8.0
+    2026-08-05 ver8.1
     Model architecture
         https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
     Based on
@@ -31,12 +31,12 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main script file -->
-  <script src="script.js?v=8.0" type="module"></script>
+  <script src="script.js?v=8.1" type="module"></script>
 
 </head>
 <body style="margin:20px;">
   <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
-  <h5 class="subtitle is-4">Handwritten digit recognition by H.Nishiyama / aujinen, V.8.0</h5>
+  <h5 class="subtitle is-4">Handwritten digit recognition by H.Nishiyama / aujinen, V.8.1</h5>
   <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
   <br><br>
   <details>
@@ -85,9 +85,13 @@
     　<button id="saveModel" class="button is-link is-light" onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
     <h5>●Load Trained Model and Parameters</h5>
     <p>1) Select the trained model file in JSON format</p>
-    ＝＝＞ <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
+    ＝＝＞<input type="file" accept=".json" id="json-upload" name="json-upload" multiple style="display:none;">
+    <label for="json-upload" id="json-upload-label" class="button is-link is-light">Select JSON files</label>
+    <span id="json-upload-filenames" style="margin-left:8px;">No files selected</span><br>
     <p>2) Select the trained parameters file in BIN format</p>
-    ＝＝＞ <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
+    ＝＝＞ <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple style="display:none;">
+    <label for="weights-upload" id="weights-upload-label" class="button is-link is-light">Select BIN files</label>
+    <span id="weights-upload-filenames" style="margin-left:8px;">No files selected</span><br>
     3) <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
   </div>
   <div>
