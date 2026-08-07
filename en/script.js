@@ -33,33 +33,33 @@
 //  supported by
 //      GitHub copilot on VSCode
 
-// ==============================
-// 1. 定数・グローバル変数
-// ==============================
+// ==================================
+// 1. constants and global variables
+// ==================================
 const classNames = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let epochs_val = 10;
 let model = null;
 let ExistModel = false;
 
 // ==============================
-// 2. UI初期化
+// 2. UI setup
 // ==============================
 function setupUI() {
-  // エポック数入力
+  // setup epoch input
   const epochInput = document.getElementById('epoch');
   epochInput.addEventListener('input', (e) => {
     epochs_val = Number(e.target.value);
   });
 
-  // 保存・読込ボタンの初期状態
+  // initially hide save model button and details button
   document.getElementById('saveModel').style.visibility = 'hidden';
   document.getElementById('saveTitle').style.visibility = 'hidden';
   document.getElementById('showDetails').style.visibility = 'hidden';
 }
 
-// ==============================
-// 3. MNISTデータの読み込み・可視化
-// ==============================
+// ========================================
+// 3. MNIST data loading and visualization
+// ========================================
 import { MnistData } from './data.js';
 
 async function showExamples(data) {
@@ -85,7 +85,7 @@ async function showExamples(data) {
 }
 
 // ==============================
-// 4. モデル構築・学習
+// 4. Model creation and training
 // ==============================
 function createModel() {
   const model = tf.sequential();
@@ -157,7 +157,7 @@ async function trainModel(model, data) {
 }
 
 // ==============================
-// 5. 評価・可視化
+// 5. evaluation and prediction
 // ==============================
 function doPrediction(model, data, testDataSize = 500) {
   const testData = data.nextTestBatch(testDataSize);
@@ -186,9 +186,9 @@ async function showConfusion(model, data) {
   labels.dispose();
 }
 
-// ==============================
-// 6. 手書き入力エリアのセットアップ
-// ==============================
+// =====================================
+// 6. setup drawing area for user input
+// =====================================
 function setupDrawArea() {
   const drawarea = document.getElementById('draw-area');
   let drawCanvas, predictBtn, clearBtn, resultDiv, commentArea;
@@ -220,7 +220,7 @@ function setupDrawArea() {
     drawarea.appendChild(resultDiv);
   }
 
-  // 描画用
+  // Drawing setup
   let drawing = false;
   let lastX = 0;
   let lastY = 0;
@@ -246,7 +246,7 @@ function setupDrawArea() {
     lastY = e.offsetY;
   });
 
-  // 予測処理
+  // Prediction button click event
   predictBtn.onclick = async () => {
     const smallCanvas = document.createElement('canvas');
     smallCanvas.width = 28;
@@ -277,7 +277,7 @@ function setupDrawArea() {
     pred.dispose();
   };
 
-  // クリア処理
+  // Clear button click event
   clearBtn.onclick = () => {
     const ctx = drawCanvas.getContext('2d');
     ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
@@ -291,7 +291,7 @@ function setupDrawArea() {
 }
 
 // ==============================
-// 7. モデル保存・読込
+// 7. Model saving and loading
 // ==============================
 export async function saveModelBtn() {
   if (ExistModel) {
@@ -330,7 +330,7 @@ export async function loadModelBtn() {
 }
 
 // ==============================
-// 8. メイン実行フロー
+// 8. Main flow
 // ==============================
 async function mainFlow() {
   const data = new MnistData();
@@ -364,9 +364,9 @@ async function run() {
   await mainFlow();
 }
 
-// ==============================
-// 9. 畳み込みフィルタの可視化　（ver.8.0で追加）
-// ==============================
+// ========================================================
+// 9. Convolutional filter visualization (added in ver.8.0)
+// ========================================================
 function createConvFilterCanvas(kernel2d, scale = 24) {
   const height = kernel2d.length;
   const width = kernel2d[0].length;
@@ -436,7 +436,7 @@ function showConvFilters(layer, maxFilters = 8) {
 }
 
 function showDetailBtn() {
-  const maxShowLayers = 5; // 最大表示層数
+  const maxShowLayers = 5; // Limit the number of convolutional layers to display
   if (!model) {
     alert('The model has not been loaded yet.');
     return;
@@ -451,9 +451,9 @@ function showDetailBtn() {
   }
 }
 
-// ==============================
-// 9. グローバル公開・初期化
-// ==============================
+// ================================================================
+// 9. Expose functions to the global scope for button click events
+// ================================================================
 window.run = run;
 window.saveModelBtn = saveModelBtn;
 window.loadModelBtn = loadModelBtn;
@@ -461,11 +461,11 @@ window.showDetailBtn = showDetailBtn;
 
 window.onload = () => {
   setupUI();
-  // run()は手動実行
+  // run manually after loading model or training, so do not call run() here automatically
 };
 
 // ==============================
-// 10. ファイル選択UIの更新
+// 10. File selection UI update
 // ==============================
 const jsonUpload = document.getElementById('json-upload');
 const jsonNames = document.getElementById('json-upload-filenames');
