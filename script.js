@@ -1,8 +1,11 @@
 /**
  * @license
- * Copyright 2025 H.Nishiyama / aujinen
- *
+ * Original work Copyright (c) Google LLC.
+ * Modified work Copyright (c) 2025-2026 H.Nishiyama / aujinen
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
+ * This file has been modified from the original Google Codelabs implementation.
+ * 
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
