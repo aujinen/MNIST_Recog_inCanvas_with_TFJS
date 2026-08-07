@@ -48,13 +48,13 @@ Click the [Clear] button to clear the drawing area.<br>
 Sample parameters (.bin) trained at each epoch count with the model file (.json) are placed in the subfolders 1 through 100.<br>
 You can try the pre-trained samples using [Load Model].<br>
 ## What it looks like when running
-<img width="711" height="729" alt="image01" src="https://github.com/user-attachments/assets/d0fb65dc-17c2-45e3-a71e-2a5af0bd100b" /><br>
+<img width="1020" height="679" alt="image001" src="https://github.com/user-attachments/assets/ebb068f0-a612-4442-a64a-4ec556a52a67" /><br>
 ＝＝＝<br>
-<img width="893" height="832" alt="image02" src="https://github.com/user-attachments/assets/79be0c0f-a245-484b-85a8-c00f3b0610f2" /><br>
+<img width="1203" height="734" alt="image002" src="https://github.com/user-attachments/assets/2323e228-26b3-43c9-b0fd-a3514807fa48" /><br>
 ＝＝＝<br>
-<img width="922" height="746" alt="image03" src="https://github.com/user-attachments/assets/47dcb0ae-4630-44c2-962f-a9a70822abdf" /><br>
+<img width="947" height="728" alt="image003" src="https://github.com/user-attachments/assets/69f905af-7958-4845-b423-758bfddcccdc" /><br>
 ＝＝＝<br>
-<img width="859" height="510" alt="image04" src="https://github.com/user-attachments/assets/e9653221-e110-4a2e-b097-ba9954502793" /><br>
+<img width="954" height="515" alt="image004" src="https://github.com/user-attachments/assets/db20f4e3-ac0e-40f8-bf0c-c6a8a5307593" /><br>
 ＝＝＝<br>
-<img width="910" height="827" alt="image05" src="https://github.com/user-attachments/assets/91d05fdb-1890-4ca0-bad2-610299f9ee68" /><br>
+<img width="948" height="710" alt="image005" src="https://github.com/user-attachments/assets/6d2f5f27-1ba4-41db-9182-cd4c842b9393" /><br>
 
