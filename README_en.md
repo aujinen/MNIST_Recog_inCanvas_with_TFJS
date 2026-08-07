@@ -9,7 +9,7 @@ script.js<br>
 ## Version information 
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-07-26 ver8.0
+    2026-08-07 ver8.1
   Model architecture<br>
       https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf<br>
   Based on<br>

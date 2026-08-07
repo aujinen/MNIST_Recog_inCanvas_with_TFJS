@@ -9,7 +9,7 @@
     MNIST recognition in Canvas with TFJS
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-07-26 ver8.0
+    2026-08-07 ver8.1
     Model architecture
         https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
     Based on
@@ -31,12 +31,12 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main script file -->
-  <script src="script.js?v=8.0" type="module"></script>
+  <script src="script.js?v=8.1" type="module"></script>
 
 </head>
 <body style="margin:20px;">
   <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
-  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.8.0</h5>
+  <h5 class="subtitle is-4">手書き数字の認識 by H.Nishiyama / aujinen, V.8.1</h5>
   <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
   <br><br>
   <details>
@@ -83,9 +83,9 @@
     　<button id="saveModel" class="button is-link is-light" onclick="saveModelBtn()" style ="visibility:hidden">Save Model</button><br>
     <h5>●学習済みモデルとパラメータ読み込み</h5>
     <p>1) json形式で記述された学習後モデルの選択</p>
-    ＝＝＞ <input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
+    ⇒　<input type="file" accept=".json" id="json-upload" name="json-upload" multiple/><br>
     <p>2) bin形式で記述された学習後パラメータの選択</p>
-    ＝＝＞ <input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
+    ⇒　<input type="file" accept=".bin" id="weights-upload" name="weights-upload" multiple/><br>
     3) <button id="loadModel" class="button is-link is-light" onclick="loadModelBtn()">Load Model</button><br>
   </div>
   <div>
