@@ -9,7 +9,7 @@
     MNIST recognition in Canvas with TFJS
     by H.Nishiyama / aujinen
     2025/09/24 ver1.0
-    2026-08-07 ver8.1
+    2026-11-20 ver8.2
     Model architecture
         https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
     Based on
@@ -31,12 +31,12 @@
   <script src="data.js" type="module"></script>
 
   <!-- Import the main script file -->
-  <script src="script.js?v=8.1" type="module"></script>
+  <script src="script.js?v=8.2" type="module"></script>
 
 </head>
 <body style="margin:20px;">
   <h4 class="title is-3">MNIST recognition in Canvas with TensorFlow.js</h4>
-  <h5 class="subtitle is-4">Handwritten digit recognition by H.Nishiyama / aujinen, V.8.1</h5>
+  <h5 class="subtitle is-4">Handwritten digit recognition by H.Nishiyama / aujinen, V.8.2</h5>
   <a href="https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS" target="GitHub"> ⇒ GitHub Repository Source</a>
   <br><br>
   <details>
@@ -53,6 +53,8 @@
       ● You can set the number of epochs in the range of 1 to 100.<br>
       After setting the number of epochs, click the [Run Training] button.<br>
       The training progress will be displayed on the right side.<br>
+      Immediately after training, the minimum value of the validation loss, which is an indicator of overfitting, and the corresponding epoch number will be displayed at the bottom of the [model] tab.<br>
+      * To keep the execution time within a few minutes, we are using 5500 training data and 1000 validation data, which is 10% of the total data.<br>
       After training is complete, draw any character in the handwriting input area.<br>
       Clicking the [Predict] button will display the recognition result.<br>
       Clicking the [Clear] button will clear the drawing area.<br>
