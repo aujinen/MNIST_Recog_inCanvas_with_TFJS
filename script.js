@@ -6,7 +6,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * This file has been modified from the original Google Codelabs implementation.
  * 
- * you may not use this file except in compliance with the License.
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
@@ -21,7 +21,7 @@
 //MNIST recognition in Canvas with TFJS
 //  by H.Nishiyama / aujinen
 //     2025/09/24 ver1.0
-//     2026-07-26 ver8.0
+//     2026-11-20 ver8.2
 //  Model architecture
 //     https://github.com/aujinen/MNIST_Recog_inCanvas_with_TFJS/blob/main/model-archtecture.pdf
 //  Based on
@@ -166,6 +166,13 @@ function doPrediction(model, data, testDataSize = 500) {
   const preds = model.predict(testxs).argMax(-1);
   testxs.dispose();
   return [preds, labels];
+}
+
+// validation lossの最小値とそのエポック数を表示する関数（2026-11-20：追加）
+async function showBestResults(bestValLosses, bestEpoch) {
+  const container = { name: 'Best Results', tab: 'Model' };
+  const surface = tfvis.visor().surface(container);
+  surface.drawArea.innerHTML = `<div style="font-size:20px; margin:8px;">Best Epoch: ${bestEpoch}, Best Validation Loss: ${bestValLosses.toFixed(4)}</div>`;
 }
 
 async function showAccuracy(model, data) {
@@ -346,6 +353,11 @@ async function mainFlow() {
 
   if (!ExistModel) {
     await trainModel(model, data);
+    const history = await trainModel(model, data);
+    const valLosses = history.history.val_loss;
+    const minValLoss = Math.min(...valLosses);
+    const bestEpoch = valLosses.indexOf(minValLoss) + 1; // 0始まりなので+1
+    await showBestResults(minValLoss, bestEpoch);
   }
 
   await showAccuracy(model, data);
